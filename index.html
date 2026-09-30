@@ -4,629 +4,1009 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>특수작전부</title>
+<title>특수작전부 // SPECIAL OPERATIONS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root{
+    --bg:#080b0e;
+    --panel:#0d1216;
+    --panel2:#11181d;
+    --line:#263038;
+    --text:#e8edf0;
+    --muted:#77828a;
+    --blue:#9db9c7;
+    --cyan:#9fd6dc;
+    --red:#c84d4d;
+    --red2:#ff6868;
+    --green:#8ebaa1;
 }
 
-html {
-    scroll-behavior: smooth;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: #080c12;
-    color: #e8edf4;
-    line-height: 1.7;
+html{
+    scroll-behavior:smooth;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+body{
+    background:
+        radial-gradient(circle at 80% 0%, rgba(89,120,135,.08), transparent 35%),
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+        var(--bg);
+    background-size:auto, 40px 40px, 40px 40px;
+    color:var(--text);
+    font-family:"Noto Sans KR", sans-serif;
+    min-width:320px;
 }
 
-button {
-    font-family: inherit;
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
 }
 
 /* =========================
-   HEADER
+   TOP BAR
 ========================= */
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 72px;
-    background: rgba(8, 12, 18, 0.88);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    z-index: 1000;
+.topbar{
+    height:64px;
+    border-bottom:1px solid var(--line);
+    background:rgba(7,10,12,.94);
+    backdrop-filter:blur(12px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5vw;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-.nav {
-    max-width: 1400px;
-    height: 100%;
-    margin: auto;
-    padding: 0 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
 
-.logo {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 3px;
+.brand-mark{
+    width:28px;
+    height:28px;
+    border:1px solid var(--blue);
+    position:relative;
 }
 
-.logo span {
-    color: #6ea8ff;
+.brand-mark:before,
+.brand-mark:after{
+    content:"";
+    position:absolute;
+    background:var(--blue);
 }
 
-.menu {
-    display: flex;
-    gap: 34px;
+.brand-mark:before{
+    width:1px;
+    height:100%;
+    left:50%;
 }
 
-.menu a {
-    color: #8d98a8;
-    font-size: 13px;
-    letter-spacing: 1px;
-    transition: 0.25s;
+.brand-mark:after{
+    height:1px;
+    width:100%;
+    top:50%;
 }
 
-.menu a:hover {
-    color: white;
+.brand strong{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:14px;
+    letter-spacing:.18em;
+}
+
+.brand span{
+    color:var(--muted);
+    font:11px "IBM Plex Mono",monospace;
+}
+
+.nav{
+    display:flex;
+    gap:30px;
+}
+
+.nav a{
+    color:#87939a;
+    font:11px "IBM Plex Mono",monospace;
+    letter-spacing:.12em;
+    transition:.2s;
+}
+
+.nav a:hover{
+    color:white;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#8ca294;
+    font:10px "IBM Plex Mono",monospace;
+}
+
+.status-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#79ad8d;
+    box-shadow:0 0 8px #79ad8d;
 }
 
 /* =========================
    HERO
 ========================= */
 
-.hero {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-
-    display: flex;
-    align-items: center;
+.hero{
+    max-width:1450px;
+    margin:auto;
+    min-height:calc(100vh - 64px);
+    padding:75px 5vw 70px;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:70px;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background:
-        radial-gradient(circle at 75% 45%, rgba(46, 104, 177, 0.22), transparent 35%),
-        linear-gradient(90deg, #080c12 15%, rgba(8,12,18,0.75) 48%, rgba(8,12,18,0.15));
+.hero:after{
+    content:"CLASSIFIED // SPECIAL OPERATIONS DIVISION";
+    position:absolute;
+    right:-70px;
+    bottom:60px;
+    color:rgba(255,255,255,.025);
+    font:700 70px "IBM Plex Mono",monospace;
+    transform:rotate(-90deg);
+    transform-origin:right bottom;
+    pointer-events:none;
 }
 
-.hero-inner {
-    position: relative;
-    width: 100%;
-    max-width: 1400px;
-    margin: auto;
-    padding: 120px 40px 80px;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 70px;
-    align-items: center;
+.hero-left{
+    position:relative;
+    z-index:2;
 }
 
-.hero-small {
-    color: #6ea8ff;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    margin-bottom: 20px;
+.system-label{
+    color:var(--red2);
+    font:11px "IBM Plex Mono",monospace;
+    letter-spacing:.2em;
+    margin-bottom:24px;
 }
 
-.hero h1 {
-    font-size: clamp(60px, 7vw, 105px);
-    line-height: 1;
-    letter-spacing: -5px;
-    margin-bottom: 28px;
+.system-label:before{
+    content:"●";
+    margin-right:9px;
+    font-size:8px;
 }
 
-.hero h1 span {
-    display: block;
-    color: #8f9aaa;
-    font-size: 0.32em;
-    letter-spacing: 8px;
-    margin-bottom: 18px;
+.hero h1{
+    font-size:clamp(70px,9vw,145px);
+    font-weight:900;
+    line-height:.82;
+    letter-spacing:-.09em;
+    margin-left:-8px;
 }
 
-.hero-description {
-    max-width: 560px;
-    color: #9ba5b3;
-    font-size: 15px;
+.hero h1 span{
+    display:block;
+    color:transparent;
+    -webkit-text-stroke:1px #75818a;
 }
 
-.hero-buttons {
-    margin-top: 38px;
-    display: flex;
-    gap: 12px;
+.hero-sub{
+    margin-top:40px;
+    max-width:560px;
+    color:#9ba6ac;
+    line-height:1.9;
+    font-size:14px;
 }
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    min-width: 150px;
-    height: 48px;
-    padding: 0 25px;
-
-    border: 1px solid rgba(255,255,255,0.15);
-    font-size: 13px;
-    letter-spacing: 1px;
-
-    transition: 0.25s;
+.hero-sub b{
+    color:#e4eaed;
+    font-weight:500;
 }
 
-.btn-primary {
-    background: #e9eef5;
-    color: #0b1017;
+.access{
+    margin-top:38px;
+    display:flex;
+    gap:12px;
 }
 
-.btn-primary:hover {
-    background: white;
-    transform: translateY(-2px);
+.btn{
+    border:1px solid var(--line);
+    background:#0e1418;
+    color:#d9e0e3;
+    padding:14px 22px;
+    font:11px "IBM Plex Mono",monospace;
+    letter-spacing:.1em;
+    cursor:pointer;
+    transition:.25s;
 }
 
-.btn-dark:hover {
-    background: rgba(255,255,255,0.07);
+.btn:hover{
+    border-color:#8da4af;
+    background:#151d22;
 }
 
-/* HERO CHARACTER */
-
-.hero-character {
-    height: 620px;
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.btn.primary{
+    border-color:var(--red);
+    background:rgba(130,35,35,.14);
 }
 
-.character-frame {
-    width: 100%;
-    height: 100%;
-    max-width: 500px;
-
-    position: relative;
-    overflow: hidden;
-
-    background:
-        linear-gradient(145deg, #17202c, #090d13);
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-.character-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.character-placeholder {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 100px;
-    font-weight: 800;
-    color: rgba(255,255,255,0.06);
-}
-
-.character-info {
-    position: absolute;
-    left: 25px;
-    bottom: 25px;
-    right: 25px;
-
-    padding: 20px;
-
-    background: rgba(5,8,12,0.82);
-    backdrop-filter: blur(12px);
-
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-.character-info small {
-    color: #6ea8ff;
-    font-size: 10px;
-    letter-spacing: 2px;
-}
-
-.character-info h3 {
-    font-size: 23px;
-    margin-top: 4px;
-}
-
-.character-info p {
-    color: #929daa;
-    font-size: 12px;
+.btn.primary:hover{
+    background:rgba(170,50,50,.25);
 }
 
 /* =========================
-   COMMON SECTION
+   TERMINAL SIDE
 ========================= */
 
-section {
-    scroll-margin-top: 72px;
+.terminal{
+    background:#0b1014;
+    border:1px solid var(--line);
+    box-shadow:0 25px 80px rgba(0,0,0,.4);
+    position:relative;
 }
 
-.section {
-    max-width: 1400px;
-    margin: auto;
-    padding: 130px 40px;
+.terminal-head{
+    height:42px;
+    border-bottom:1px solid var(--line);
+    padding:0 15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#77848c;
+    font:10px "IBM Plex Mono",monospace;
 }
 
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    margin-bottom: 55px;
+.terminal-title{
+    color:#a9b5bb;
 }
 
-.section-number {
-    color: #50627a;
-    font-size: 11px;
-    letter-spacing: 3px;
+.terminal-body{
+    padding:25px;
 }
 
-.section-title {
-    margin-top: 8px;
-    font-size: 38px;
-    letter-spacing: -1px;
+.terminal-line{
+    display:flex;
+    gap:15px;
+    margin-bottom:16px;
+    font:11px "IBM Plex Mono",monospace;
 }
 
-.section-description {
-    max-width: 450px;
-    color: #788391;
-    font-size: 13px;
+.terminal-line .num{
+    color:#4d5a61;
+    width:20px;
+}
+
+.terminal-line .cmd{
+    color:#91b4bf;
+}
+
+.terminal-line .value{
+    color:#d6dfe2;
+}
+
+.warning{
+    color:var(--red2)!important;
+}
+
+.terminal-divider{
+    height:1px;
+    background:var(--line);
+    margin:25px 0;
+}
+
+.progress{
+    height:4px;
+    background:#20292f;
+    margin-top:8px;
+    overflow:hidden;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    background:var(--cyan);
+    width:73%;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    max-width:1450px;
+    margin:auto;
+    padding:120px 5vw;
+    border-top:1px solid var(--line);
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:55px;
+}
+
+.section-index{
+    color:var(--red2);
+    font:11px "IBM Plex Mono",monospace;
+    letter-spacing:.15em;
+}
+
+.section h2{
+    margin-top:12px;
+    font-size:43px;
+    font-weight:700;
+    letter-spacing:-.06em;
+}
+
+.section-desc{
+    color:#6f7b82;
+    font:11px "IBM Plex Mono",monospace;
+    text-align:right;
+    line-height:1.7;
 }
 
 /* =========================
    WORLD
 ========================= */
 
-.world {
-    background: #0b1017;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+.world-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
 }
 
-.world-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 70px;
+.world-box{
+    background:var(--panel);
+    padding:42px;
+    min-height:250px;
+    position:relative;
 }
 
-.world-text {
-    color: #a0a9b5;
-    font-size: 15px;
+.world-box:nth-child(2){
+    background:#0a0f12;
 }
 
-.world-text p {
-    margin-bottom: 20px;
+.world-number{
+    position:absolute;
+    top:25px;
+    right:30px;
+    color:#263137;
+    font:50px "IBM Plex Mono",monospace;
 }
 
-.highlight {
-    color: #e9eef5;
+.world-box h3{
+    font-size:20px;
+    margin-bottom:20px;
 }
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+.world-box p{
+    color:#8c979d;
+    font-size:13px;
+    line-height:2;
+    max-width:570px;
 }
 
-.stat {
-    min-height: 150px;
-    padding: 25px;
-
-    border: 1px solid rgba(255,255,255,0.07);
-    background: rgba(255,255,255,0.015);
+.keyword{
+    color:#c6d9df;
 }
 
-.stat-number {
-    display: block;
-    font-size: 38px;
-    font-weight: 700;
+.red{
+    color:var(--red2);
 }
 
-.stat-label {
-    color: #707b89;
-    font-size: 12px;
+/* =========================
+   ABILITY SIGNAL
+========================= */
+
+.signal{
+    margin-top:1px;
+    background:#090d10;
+    border:1px solid var(--line);
+    padding:30px;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:35px;
+    align-items:center;
+}
+
+.signal-title{
+    font:11px "IBM Plex Mono",monospace;
+    color:#7e8b91;
+    line-height:1.8;
+}
+
+.signal-title strong{
+    display:block;
+    color:#dce4e7;
+    font-size:14px;
+    margin-bottom:5px;
+}
+
+.signal-graph{
+    height:95px;
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(rgba(150,180,190,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(150,180,190,.07) 1px, transparent 1px);
+    background-size:25px 25px;
+}
+
+.signal-line{
+    position:absolute;
+    left:0;
+    right:0;
+    top:50%;
+    height:2px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            #78949e 7%,
+            #9ec7d0 13%,
+            #71949e 18%,
+            #9ec7d0 27%,
+            #4e6972 35%,
+            #9ec7d0 41%,
+            #d75b5b 44%,
+            #d75b5b 47%,
+            #6e929d 49%,
+            #9ec7d0 63%,
+            #5d7d87 73%,
+            #8daeb7 84%,
+            transparent 100%
+        );
+    box-shadow:0 0 12px rgba(143,194,205,.3);
 }
 
 /* =========================
    CHARACTERS
 ========================= */
 
-.characters {
-    background: #080c12;
+.character-list{
+    border-top:1px solid var(--line);
 }
 
-.character-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+.character{
+    display:grid;
+    grid-template-columns:90px 1fr 300px;
+    min-height:150px;
+    border-bottom:1px solid var(--line);
+    transition:.25s;
 }
 
-.card {
-    min-height: 310px;
-    padding: 30px;
-
-    position: relative;
-    overflow: hidden;
-
-    border: 1px solid rgba(255,255,255,0.07);
-    background: linear-gradient(145deg, #101720, #0b1017);
-
-    transition: 0.3s;
+.character:hover{
+    background:#0d1317;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(110,168,255,0.3);
+.char-no{
+    padding:35px 20px;
+    color:#455159;
+    font:12px "IBM Plex Mono",monospace;
 }
 
-.card-number {
-    color: #45576d;
-    font-size: 11px;
-    letter-spacing: 2px;
+.char-main{
+    padding:32px 25px;
 }
 
-.card-role {
-    color: #6ea8ff;
-    font-size: 11px;
-    margin-top: 55px;
+.char-name{
+    font-size:25px;
+    font-weight:700;
+    margin-bottom:6px;
 }
 
-.card h3 {
-    font-size: 26px;
-    margin-top: 5px;
+.char-role{
+    color:#819098;
+    font:10px "IBM Plex Mono",monospace;
+    letter-spacing:.1em;
 }
 
-.card-age {
-    color: #6f7a88;
-    font-size: 12px;
+.char-desc{
+    color:#707c82;
+    margin-top:17px;
+    font-size:12px;
+    line-height:1.8;
 }
 
-.card-ability {
-    margin-top: 25px;
-    padding-top: 18px;
-
-    border-top: 1px solid rgba(255,255,255,0.06);
-
-    color: #b7c0cc;
-    font-size: 13px;
+.char-side{
+    border-left:1px solid var(--line);
+    padding:32px 25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:9px;
 }
 
-.card-ability span {
-    display: block;
-    color: #647387;
-    font-size: 10px;
-    letter-spacing: 2px;
-    margin-bottom: 3px;
+.stat-row{
+    display:flex;
+    justify-content:space-between;
+    color:#69767d;
+    font:10px "IBM Plex Mono",monospace;
 }
 
-/* =========================
-   EVENTS
-========================= */
-
-.events {
-    background: #0b1017;
-    border-top: 1px solid rgba(255,255,255,0.05);
+.stat-row strong{
+    color:#c5d0d4;
+    font-weight:500;
 }
 
-.event-list {
-    display: flex;
-    flex-direction: column;
-}
-
-.event {
-    display: grid;
-    grid-template-columns: 130px 1fr 80px;
-    gap: 30px;
-
-    padding: 30px 0;
-
-    border-top: 1px solid rgba(255,255,255,0.07);
-
-    transition: 0.25s;
-}
-
-.event:last-child {
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
-.event:hover {
-    padding-left: 10px;
-}
-
-.event-date {
-    color: #6ea8ff;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-
-.event h3 {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.event p {
-    color: #727e8c;
-    font-size: 13px;
-    margin-top: 5px;
-}
-
-.event-type {
-    color: #596678;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-align: right;
+.ability-tag{
+    display:inline-block;
+    border:1px solid #34434b;
+    padding:5px 8px;
+    color:#9bb8c0;
+    font:10px "IBM Plex Mono",monospace;
+    width:max-content;
 }
 
 /* =========================
-   MISSION
+   LEADER
 ========================= */
 
-.mission {
-    min-height: 600px;
+.leader{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border:1px solid var(--line);
+    min-height:550px;
+    background:#0c1115;
 }
 
-.mission-box {
-    position: relative;
-    padding: 60px;
+.leader-image{
+    position:relative;
+    overflow:hidden;
+    min-height:550px;
+}
 
-    border: 1px solid rgba(110,168,255,0.16);
+.leader-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:grayscale(.25) contrast(1.08) brightness(.72);
+}
 
+.leader-image:after{
+    content:"";
+    position:absolute;
+    inset:0;
     background:
-        radial-gradient(circle at 90% 20%, rgba(50,100,180,0.15), transparent 30%),
-        #0c131c;
+        linear-gradient(90deg, transparent 50%, #0c1115 100%),
+        linear-gradient(0deg, rgba(0,0,0,.6), transparent 45%);
 }
 
-.mission-code {
-    color: #52657e;
-    font-size: 11px;
-    letter-spacing: 3px;
+.image-code{
+    position:absolute;
+    left:25px;
+    bottom:25px;
+    z-index:2;
+    color:#a5b4ba;
+    font:10px "IBM Plex Mono",monospace;
+    line-height:1.8;
 }
 
-.mission-box h2 {
-    font-size: 44px;
-    margin: 15px 0;
+.leader-info{
+    padding:65px 55px;
+    position:relative;
 }
 
-.mission-box p {
-    max-width: 700px;
-    color: #8793a1;
-    font-size: 14px;
+.classified{
+    color:var(--red2);
+    font:10px "IBM Plex Mono",monospace;
+    letter-spacing:.15em;
+    margin-bottom:35px;
 }
 
-.mission-data {
-    display: flex;
-    gap: 50px;
-    margin-top: 45px;
+.leader-info h3{
+    font-size:52px;
+    letter-spacing:-.08em;
 }
 
-.data-item small {
-    display: block;
-    color: #566476;
-    font-size: 10px;
-    letter-spacing: 2px;
+.leader-info .role{
+    color:#7f8b92;
+    font:11px "IBM Plex Mono",monospace;
+    margin-top:8px;
 }
 
-.data-item strong {
-    display: block;
-    margin-top: 4px;
-    font-size: 14px;
+.profile-line{
+    height:1px;
+    background:var(--line);
+    margin:35px 0;
+}
+
+.profile-data{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    row-gap:18px;
+    font-size:12px;
+}
+
+.profile-data dt{
+    color:#5f6c73;
+    font:10px "IBM Plex Mono",monospace;
+}
+
+.profile-data dd{
+    color:#b9c4c8;
+}
+
+.overload{
+    margin-top:40px;
+    padding:18px;
+    border-left:2px solid var(--red);
+    background:rgba(120,35,35,.08);
+}
+
+.overload span{
+    display:block;
+    color:var(--red2);
+    font:10px "IBM Plex Mono",monospace;
+    margin-bottom:7px;
+}
+
+.overload p{
+    color:#7e898f;
+    font-size:11px;
+    line-height:1.7;
+}
+
+/* =========================
+   MISSION LOG
+========================= */
+
+.mission-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.mission{
+    border:1px solid var(--line);
+    background:#0c1115;
+    padding:28px;
+    min-height:190px;
+    position:relative;
+    transition:.25s;
+}
+
+.mission:hover{
+    border-color:#50636d;
+    transform:translateY(-2px);
+}
+
+.mission-code{
+    color:var(--red2);
+    font:10px "IBM Plex Mono",monospace;
+}
+
+.mission h3{
+    font-size:21px;
+    margin:18px 0 10px;
+}
+
+.mission p{
+    color:#737f85;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.mission-status{
+    position:absolute;
+    right:25px;
+    top:27px;
+    color:#779583;
+    font:9px "IBM Plex Mono",monospace;
+}
+
+/* =========================
+   ACCESS
+========================= */
+
+.access-section{
+    min-height:500px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border-top:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+}
+
+.access-section:before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    border:1px solid rgba(145,180,190,.05);
+    border-radius:50%;
+}
+
+.access-section:after{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    border:1px solid rgba(145,180,190,.05);
+    border-radius:50%;
+}
+
+.access-small{
+    color:var(--red2);
+    font:10px "IBM Plex Mono",monospace;
+    letter-spacing:.2em;
+    margin-bottom:25px;
+    z-index:2;
+}
+
+.access-section h2{
+    font-size:clamp(45px,7vw,100px);
+    letter-spacing:-.09em;
+    z-index:2;
+}
+
+.access-section p{
+    color:#6d797f;
+    font-size:12px;
+    margin:20px 0 35px;
+    z-index:2;
+}
+
+.access-section button{
+    z-index:2;
 }
 
 /* =========================
    FOOTER
 ========================= */
 
-footer {
-    padding: 50px 40px;
-
-    border-top: 1px solid rgba(255,255,255,0.06);
-
-    color: #515c69;
-    font-size: 11px;
-}
-
-.footer-inner {
-    max-width: 1400px;
-    margin: auto;
-
-    display: flex;
-    justify-content: space-between;
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 5vw;
+    display:flex;
+    justify-content:space-between;
+    color:#4e5a61;
+    font:9px "IBM Plex Mono",monospace;
 }
 
 /* =========================
-   MOBILE
+   CHAT
 ========================= */
 
-@media (max-width: 900px) {
+.chat-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(2,4,5,.88);
+    backdrop-filter:blur(8px);
+    z-index:500;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
 
-    .nav {
-        padding: 0 20px;
+.chat-window{
+    width:min(900px,100%);
+    height:min(680px,90vh);
+    background:#0b1014;
+    border:1px solid #35434a;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 30px 100px rgba(0,0,0,.7);
+}
+
+.chat-head{
+    height:55px;
+    border-bottom:1px solid var(--line);
+    padding:0 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font:10px "IBM Plex Mono",monospace;
+}
+
+.close{
+    cursor:pointer;
+    color:#78858b;
+}
+
+.chat-body{
+    flex:1;
+    overflow:auto;
+    padding:25px;
+}
+
+.message{
+    margin-bottom:20px;
+    max-width:75%;
+}
+
+.message .speaker{
+    color:#70838c;
+    font:9px "IBM Plex Mono",monospace;
+    margin-bottom:6px;
+}
+
+.message .bubble{
+    background:#11181d;
+    border:1px solid var(--line);
+    padding:14px 17px;
+    color:#b8c3c7;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.message.user{
+    margin-left:auto;
+}
+
+.message.user .bubble{
+    background:#182328;
+    border-color:#3b555f;
+}
+
+.chat-input{
+    border-top:1px solid var(--line);
+    display:flex;
+}
+
+.chat-input input{
+    flex:1;
+    background:#090d10;
+    border:0;
+    padding:18px;
+    color:white;
+    outline:none;
+    font:12px "Noto Sans KR",sans-serif;
+}
+
+.chat-input button{
+    width:110px;
+    border:0;
+    border-left:1px solid var(--line);
+    background:#11181d;
+    color:#a9c2ca;
+    cursor:pointer;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .nav{
+        display:none;
     }
 
-    .menu {
-        gap: 12px;
+    .hero{
+        grid-template-columns:1fr;
+        min-height:auto;
+        padding-top:70px;
     }
 
-    .menu a {
-        font-size: 10px;
+    .hero h1{
+        font-size:18vw;
     }
 
-    .hero-inner {
-        grid-template-columns: 1fr;
-        padding: 120px 25px 60px;
+    .hero:after{
+        display:none;
     }
 
-    .hero-character {
-        height: 480px;
+    .world-grid,
+    .leader,
+    .mission-list{
+        grid-template-columns:1fr;
     }
 
-    .section {
-        padding: 90px 25px;
+    .signal{
+        grid-template-columns:1fr;
     }
 
-    .world-grid {
-        grid-template-columns: 1fr;
+    .character{
+        grid-template-columns:55px 1fr;
     }
 
-    .character-grid {
-        grid-template-columns: 1fr;
+    .char-side{
+        grid-column:2;
+        border-left:0;
+        border-top:1px solid var(--line);
     }
 
-    .section-header {
-        display: block;
+    .leader-image{
+        min-height:420px;
     }
 
-    .section-description {
-        margin-top: 15px;
+    .leader-info{
+        padding:40px 30px;
     }
 
-    .event {
-        grid-template-columns: 80px 1fr;
+    .leader-info h3{
+        font-size:40px;
     }
 
-    .event-type {
-        display: none;
+    footer{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+
+@media(max-width:560px){
+
+    .topbar{
+        padding:0 18px;
     }
 
-    .mission-box {
-        padding: 35px 25px;
+    .brand span{
+        display:none;
     }
 
-    .mission-data {
-        flex-wrap: wrap;
-        gap: 25px;
+    .hero,
+    .section{
+        padding-left:20px;
+        padding-right:20px;
     }
 
-    .footer-inner {
-        display: block;
+    .hero h1{
+        font-size:22vw;
+    }
+
+    .section{
+        padding-top:80px;
+        padding-bottom:80px;
+    }
+
+    .section h2{
+        font-size:34px;
+    }
+
+    .section-head{
+        display:block;
+    }
+
+    .section-desc{
+        text-align:left;
+        margin-top:15px;
+    }
+
+    .world-box{
+        padding:30px 25px;
+    }
+
+    .character{
+        grid-template-columns:45px 1fr;
+    }
+
+    .char-main{
+        padding:28px 15px;
+    }
+
+    .char-side{
+        padding:25px 15px;
+    }
+
+    .access{
+        flex-direction:column;
     }
 }
 </style>
@@ -638,101 +1018,140 @@ footer {
      HEADER
 ========================= -->
 
-<header>
-    <nav class="nav">
+<header class="topbar">
 
-        <a href="#home" class="logo">
-            SPECIAL<span>OPS</span>
-        </a>
+    <a href="#home" class="brand">
+        <div class="brand-mark"></div>
 
-        <div class="menu">
-            <a href="#home">HOME</a>
-            <a href="#world">WORLD</a>
-            <a href="#characters">CHARACTERS</a>
-            <a href="#events">EVENTS</a>
-            <a href="#mission">MISSION</a>
+        <div>
+            <strong>SPECIAL OPERATIONS</strong>
+            <span>ABILITY RESPONSE DIVISION</span>
         </div>
+    </a>
 
+    <nav class="nav">
+        <a href="#world">WORLD</a>
+        <a href="#characters">OPERATIVES</a>
+        <a href="#missions">MISSIONS</a>
+        <a href="#access">ACCESS</a>
     </nav>
+
+    <div class="status">
+        <i class="status-dot"></i>
+        SYSTEM ONLINE
+    </div>
+
 </header>
 
 
 <!-- =========================
-     HOME
+     HERO
 ========================= -->
 
-<section id="home" class="hero">
+<main id="home">
 
-    <div class="hero-inner">
+<section class="hero">
 
-        <div class="hero-text">
+    <div class="hero-left">
 
-            <div class="hero-small">
-                SPECIAL OPERATIONS DIVISION
-            </div>
+        <div class="system-label">
+            CLASSIFIED // NEW OPERATIVE REGISTRATION
+        </div>
 
-            <h1>
-                <span>PROJECT</span>
-                특수작전부
-            </h1>
+        <h1>
+            특수<br>
+            <span>작전부</span>
+        </h1>
 
-            <p class="hero-description">
-                평범한 군과 경찰만으로는 대응할 수 없는 사건을 처리하는
-                특수작전부대. 능력 범죄, 테러, 인질 구출 등
-                고위험 사건을 전담한다.
-            </p>
+        <div class="hero-sub">
+            <b>능력자 범죄 대응 전담부서.</b><br>
+            일반 경찰력과 군사력으로 대응할 수 없는 사건을 처리한다.
+            테러, 인질 구출, 능력자 범죄 그리고 기록에서 삭제된 사건들.
+            <br><br>
+            당신은 오늘부로 이곳의 새로운 요원이다.
+        </div>
 
-            <div class="hero-buttons">
-                <a href="#mission" class="btn btn-primary">
-                    작전 시작
-                </a>
+        <div class="access">
 
-                <a href="#world" class="btn btn-dark">
-                    세계관 보기
-                </a>
-            </div>
+            <button class="btn primary" onclick="openChat()">
+                OPERATION START
+            </button>
+
+            <a class="btn" href="#world">
+                ACCESS DATABASE
+            </a>
 
         </div>
 
+    </div>
 
-        <div class="hero-character">
 
-            <div class="character-frame">
+    <div class="terminal">
 
-                <!--
-                    깃허브에 이미지를 올릴 경우
+        <div class="terminal-head">
+            <span class="terminal-title">
+                SOD://NEW_OPERATIVE
+            </span>
 
-                    assets/teamleader.webp
+            <span>SECURITY LEVEL 04</span>
+        </div>
 
-                    로 파일을 넣으면 됨.
-                -->
+        <div class="terminal-body">
 
-                <img
-                    src="assets/teamleader.webp"
-                    alt="강태현"
-                    onerror="this.style.display='none'"
-                >
+            <div class="terminal-line">
+                <span class="num">01</span>
+                <span class="cmd">INITIALIZING...</span>
+            </div>
 
-                <div class="character-placeholder">
-                    T
+            <div class="terminal-line">
+                <span class="num">02</span>
+                <span class="value">ABILITY DATABASE</span>
+                <span class="cmd">[CONNECTED]</span>
+            </div>
+
+            <div class="terminal-line">
+                <span class="num">03</span>
+                <span class="value">OPERATIVE DATABASE</span>
+                <span class="cmd">[CONNECTED]</span>
+            </div>
+
+            <div class="terminal-line">
+                <span class="num">04</span>
+                <span class="value">THREAT DATABASE</span>
+                <span class="cmd warning">[RESTRICTED]</span>
+            </div>
+
+            <div class="terminal-divider"></div>
+
+            <div class="terminal-line">
+                <span class="num">05</span>
+
+                <div style="flex:1">
+                    <div class="value">
+                        CURRENT WORLD STABILITY
+                    </div>
+
+                    <div class="progress">
+                        <span></span>
+                    </div>
                 </div>
 
-                <div class="character-info">
+            </div>
 
-                    <small>
-                        TEAM LEADER
-                    </small>
+            <div class="terminal-divider"></div>
 
-                    <h3>
-                        강태현
-                    </h3>
+            <div class="terminal-line">
+                <span class="num">06</span>
+                <span class="cmd warning">
+                    WARNING: ABILITY OVERLOAD
+                </span>
+            </div>
 
-                    <p>
-                        능력 : 신체 강화
-                    </p>
-
-                </div>
-
+            <div class="terminal-line">
+                <span class="num">07</span>
+                <span class="value">
+                    EVERY POWER HAS A COST.
+                </span>
             </div>
 
         </div>
@@ -746,500 +1165,465 @@ footer {
      WORLD
 ========================= -->
 
-<section id="world" class="world">
+<section class="section" id="world">
 
-    <div class="section">
+    <div class="section-head">
 
-        <div class="section-header">
-
-            <div>
-                <div class="section-number">
-                    01 / WORLD
-                </div>
-
-                <h2 class="section-title">
-                    세계관
-                </h2>
-            </div>
-
-            <p class="section-description">
-                능력자가 존재하는 세계.
-                그리고 그들을 상대하기 위해 만들어진 특수작전부.
-            </p>
-
+        <div>
+            <div class="section-index">01 // WORLD DATABASE</div>
+            <h2>능력자의 시대</h2>
         </div>
 
-
-        <div class="world-grid">
-
-            <div class="world-text">
-
-                <p>
-                    약 <span class="highlight">20년 전</span>,
-                    일부 인간에게 특수한 능력이 발현되기 시작했다.
-                </p>
-
-                <p>
-                    처음에는 단순한 사회적 현상으로 여겨졌지만,
-                    능력을 이용한 범죄와 테러가 급격하게 증가하면서
-                    기존의 군과 경찰 조직만으로는 사건을 해결하기
-                    어려운 상황이 이어졌다.
-                </p>
-
-                <p>
-                    각국 정부는 능력자 사건을 전문적으로 처리하기 위한
-                    특수부대를 창설했고, 대한민국 역시
-                    <span class="highlight">특수작전부</span>를 설립했다.
-                </p>
-
-                <p>
-                    당신은 그곳에 새롭게 배치된 작전요원이다.
-                    어떤 능력을 가지고 있는지는 당신이 결정한다.
-                </p>
-
-                <p>
-                    단, 능력을 과도하게 사용하면
-                    <span class="highlight">오버로드</span>가 발생한다.
-                    강한 힘에는 반드시 대가가 따른다.
-                </p>
-
-            </div>
-
-
-            <div class="stats">
-
-                <div class="stat">
-                    <span class="stat-number">20+</span>
-                    <span class="stat-label">
-                        능력 발현 이후 경과 연수
-                    </span>
-                </div>
-
-                <div class="stat">
-                    <span class="stat-number">7</span>
-                    <span class="stat-label">
-                        특수작전팀
-                    </span>
-                </div>
-
-                <div class="stat">
-                    <span class="stat-number">A</span>
-                    <span class="stat-label">
-                        주요 능력자 위험등급
-                    </span>
-                </div>
-
-                <div class="stat">
-                    <span class="stat-number">01</span>
-                    <span class="stat-label">
-                        신규 작전요원
-                    </span>
-                </div>
-
-            </div>
-
+        <div class="section-desc">
+            GLOBAL ABILITY INCIDENT ARCHIVE<br>
+            ACCESS LEVEL : OPERATIVE
         </div>
 
     </div>
 
-</section>
 
+    <div class="world-grid">
 
-<!-- =========================
-     CHARACTERS
-========================= -->
+        <article class="world-box">
 
-<section id="characters" class="characters">
+            <div class="world-number">01</div>
 
-    <div class="section">
-
-        <div class="section-header">
-
-            <div>
-                <div class="section-number">
-                    02 / CHARACTERS
-                </div>
-
-                <h2 class="section-title">
-                    인물
-                </h2>
-            </div>
-
-            <p class="section-description">
-                당신이 함께 작전을 수행하게 될 특수작전부의 요원들.
-            </p>
-
-        </div>
-
-
-        <div class="character-grid">
-
-            <!-- 강태현 -->
-
-            <article class="card">
-
-                <div class="card-number">
-                    01
-                </div>
-
-                <div class="card-role">
-                    TEAM LEADER
-                </div>
-
-                <h3>
-                    강태현
-                </h3>
-
-                <div class="card-age">
-                    32세
-                </div>
-
-                <div class="card-ability">
-                    <span>ABILITY</span>
-                    신체 강화
-                </div>
-
-            </article>
-
-
-            <!-- 서지혁 -->
-
-            <article class="card">
-
-                <div class="card-number">
-                    02
-                </div>
-
-                <div class="card-role">
-                    DEPUTY TEAM LEADER
-                </div>
-
-                <h3>
-                    서지혁
-                </h3>
-
-                <div class="card-age">
-                    29세
-                </div>
-
-                <div class="card-ability">
-                    <span>ABILITY</span>
-                    공간 이동
-                </div>
-
-            </article>
-
-
-            <!-- 한도윤 -->
-
-            <article class="card">
-
-                <div class="card-number">
-                    03
-                </div>
-
-                <div class="card-role">
-                    ASSAULT OPERATIVE
-                </div>
-
-                <h3>
-                    한도윤
-                </h3>
-
-                <div class="card-age">
-                    26세
-                </div>
-
-                <div class="card-ability">
-                    <span>ABILITY</span>
-                    전기
-                </div>
-
-            </article>
-
-
-            <!-- 윤서아 -->
-
-            <article class="card">
-
-                <div class="card-number">
-                    04
-                </div>
-
-                <div class="card-role">
-                    SNIPER
-                </div>
-
-                <h3>
-                    윤서아
-                </h3>
-
-                <div class="card-age">
-                    27세
-                </div>
-
-                <div class="card-ability">
-                    <span>ABILITY</span>
-                    감각 강화
-                </div>
-
-            </article>
-
-
-            <!-- 정유진 -->
-
-            <article class="card">
-
-                <div class="card-number">
-                    05
-                </div>
-
-                <div class="card-role">
-                    MEDIC
-                </div>
-
-                <h3>
-                    정유진
-                </h3>
-
-                <div class="card-age">
-                    28세
-                </div>
-
-                <div class="card-ability">
-                    <span>ABILITY</span>
-                    생체 치유
-                </div>
-
-            </article>
-
-
-            <!-- 이현 -->
-
-            <article class="card">
-
-                <div class="card-number">
-                    06
-                </div>
-
-                <div class="card-role">
-                    INTELLIGENCE
-                </div>
-
-                <h3>
-                    이현
-                </h3>
-
-                <div class="card-age">
-                    30세
-                </div>
-
-                <div class="card-ability">
-                    <span>ABILITY</span>
-                    능력 흔적 추적
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     EVENTS
-========================= -->
-
-<section id="events" class="events">
-
-    <div class="section">
-
-        <div class="section-header">
-
-            <div>
-                <div class="section-number">
-                    03 / EVENTS
-                </div>
-
-                <h2 class="section-title">
-                    주요 사건
-                </h2>
-            </div>
-
-            <p class="section-description">
-                특수작전부의 작전 기록과 당신이 마주하게 될 사건들.
-            </p>
-
-        </div>
-
-
-        <div class="event-list">
-
-            <a href="#mission" class="event">
-
-                <div class="event-date">
-                    EVENT 01
-                </div>
-
-                <div>
-                    <h3>
-                        신규 요원 배치
-                    </h3>
-
-                    <p>
-                        당신이 특수작전부에 처음 배치된다.
-                        새로운 팀원들과의 첫 만남.
-                    </p>
-                </div>
-
-                <div class="event-type">
-                    BEGIN
-                </div>
-
-            </a>
-
-
-            <a href="#mission" class="event">
-
-                <div class="event-date">
-                    EVENT 02
-                </div>
-
-                <div>
-                    <h3>
-                        능력자 테러 사건
-                    </h3>
-
-                    <p>
-                        도심에서 능력자를 이용한 테러가 발생한다.
-                        특수작전부가 현장에 투입된다.
-                    </p>
-                </div>
-
-                <div class="event-type">
-                    MISSION
-                </div>
-
-            </a>
-
-
-            <a href="#mission" class="event">
-
-                <div class="event-date">
-                    EVENT 03
-                </div>
-
-                <div>
-                    <h3>
-                        흔적 없는 능력자
-                    </h3>
-
-                    <p>
-                        이현이 지금까지 발견된 적 없는
-                        이상한 능력 흔적을 발견한다.
-                    </p>
-                </div>
-
-                <div class="event-type">
-                    CASE
-                </div>
-
-            </a>
-
-
-            <a href="#mission" class="event">
-
-                <div class="event-date">
-                    EVENT 04
-                </div>
-
-                <div>
-                    <h3>
-                        BLACK
-                    </h3>
-
-                    <p>
-                        능력자 범죄 조직의 정체가
-                        조금씩 드러나기 시작한다.
-                    </p>
-                </div>
-
-                <div class="event-type">
-                    CLASSIFIED
-                </div>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     MISSION
-========================= -->
-
-<section id="mission" class="mission">
-
-    <div class="section">
-
-        <div class="section-header">
-
-            <div>
-                <div class="section-number">
-                    04 / MISSION
-                </div>
-
-                <h2 class="section-title">
-                    작전 개시
-                </h2>
-            </div>
-
-            <p class="section-description">
-                이제 당신의 이야기가 시작된다.
-            </p>
-
-        </div>
-
-
-        <div class="mission-box">
-
-            <div class="mission-code">
-                OPERATION / SPECIAL-001
-            </div>
-
-            <h2>
-                특수작전부에<br>
-                합류하시겠습니까?
-            </h2>
+            <h3>20년 전</h3>
 
             <p>
-                당신은 오늘부터 특수작전부의 작전요원이다.
-                당신의 능력, 선택, 행동에 따라
-                사건의 결과와 사람들의 관계가 달라진다.
+                인류 일부에게 기존의 물리 법칙으로 설명할 수 없는
+                <span class="keyword">특수 능력</span>이 발현되기 시작했다.
+                처음에는 극히 드문 현상이었다.
             </p>
 
+        </article>
 
-            <div class="mission-data">
 
-                <div class="data-item">
-                    <small>LOCATION</small>
-                    <strong>대한민국 / 기밀</strong>
+        <article class="world-box">
+
+            <div class="world-number">02</div>
+
+            <h3>능력자 범죄</h3>
+
+            <p>
+                시간이 지나면서 능력을 범죄에 이용하는 사람들이 등장했다.
+                기존 경찰과 군사 체계만으로는 대응할 수 없는 사건이 증가했다.
+            </p>
+
+        </article>
+
+
+        <article class="world-box">
+
+            <div class="world-number">03</div>
+
+            <h3>특수작전부 창설</h3>
+
+            <p>
+                각국 정부는 능력자 사건을 전담하기 위한 조직을 설립했다.
+                그중에서도 특수작전부는
+                <span class="red">최고 위험도의 사건</span>을 담당한다.
+            </p>
+
+        </article>
+
+
+        <article class="world-box">
+
+            <div class="world-number">04</div>
+
+            <h3>그리고 현재</h3>
+
+            <p>
+                능력은 더 이상 기적이 아니다.
+                하지만 능력자가 어디에서 태어나고,
+                왜 특정 능력을 가지게 되는지는 여전히 밝혀지지 않았다.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="signal">
+
+        <div class="signal-title">
+            <strong>ABILITY TRACE</strong>
+            RECORDED RESIDUAL SIGNAL<br>
+            UNKNOWN SIGNATURE DETECTED
+        </div>
+
+        <div class="signal-graph">
+            <div class="signal-line"></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     OPERATIVES
+========================= -->
+
+<section class="section" id="characters">
+
+    <div class="section-head">
+
+        <div>
+            <div class="section-index">02 // OPERATIVE DATABASE</div>
+            <h2>특수작전부 요원</h2>
+        </div>
+
+        <div class="section-desc">
+            PERSONNEL RECORD<br>
+            SIX ACTIVE OPERATIVES
+        </div>
+
+    </div>
+
+
+    <div class="character-list">
+
+        <article class="character">
+
+            <div class="char-no">01</div>
+
+            <div class="char-main">
+
+                <div class="char-name">강태현</div>
+
+                <div class="char-role">
+                    TEAM LEADER // AGE 32
                 </div>
 
-                <div class="data-item">
-                    <small>THREAT</small>
-                    <strong>ABILITY USER</strong>
+                <p class="char-desc">
+                    원칙주의자. 부하의 생존을 최우선으로 생각한다.
+                    감정을 쉽게 드러내지 않으며 모든 판단은 냉정하다.
+                </p>
+
+            </div>
+
+            <div class="char-side">
+
+                <span class="ability-tag">신체 강화</span>
+
+                <div class="stat-row">
+                    <span>COMBAT</span>
+                    <strong>A+</strong>
                 </div>
 
-                <div class="data-item">
-                    <small>STATUS</small>
-                    <strong>STANDBY</strong>
+                <div class="stat-row">
+                    <span>CONTROL</span>
+                    <strong>A</strong>
                 </div>
+
+                <div class="stat-row">
+                    <span>TRUST</span>
+                    <strong>CLASSIFIED</strong>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="character">
+
+            <div class="char-no">02</div>
+
+            <div class="char-main">
+
+                <div class="char-name">서지혁</div>
+
+                <div class="char-role">
+                    DEPUTY TEAM LEADER // AGE 29
+                </div>
+
+                <p class="char-desc">
+                    계산적이고 의심이 많다.
+                    당신이 이 부대에 들어오기 전부터 당신에 대해 알고 있었던 듯하다.
+                </p>
+
+            </div>
+
+            <div class="char-side">
+
+                <span class="ability-tag">공간 이동</span>
+
+                <div class="stat-row">
+                    <span>COMBAT</span>
+                    <strong>A</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>CONTROL</span>
+                    <strong>A+</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>TRUST</span>
+                    <strong>LOW</strong>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="character">
+
+            <div class="char-no">03</div>
+
+            <div class="char-main">
+
+                <div class="char-name">한도윤</div>
+
+                <div class="char-role">
+                    ASSAULT OPERATIVE // AGE 26
+                </div>
+
+                <p class="char-desc">
+                    분위기를 가볍게 만드는 성격.
+                    당신이 부대에 들어온 첫날부터 거리낌 없이 말을 건다.
+                </p>
+
+            </div>
+
+            <div class="char-side">
+
+                <span class="ability-tag">전기</span>
+
+                <div class="stat-row">
+                    <span>COMBAT</span>
+                    <strong>A</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>CONTROL</span>
+                    <strong>B+</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>TRUST</span>
+                    <strong>OPEN</strong>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="character">
+
+            <div class="char-no">04</div>
+
+            <div class="char-main">
+
+                <div class="char-name">윤서아</div>
+
+                <div class="char-role">
+                    SNIPER // AGE 27
+                </div>
+
+                <p class="char-desc">
+                    말수가 적고 관찰력이 뛰어나다.
+                    감정보다 행동으로 신뢰를 표현하는 타입이다.
+                </p>
+
+            </div>
+
+            <div class="char-side">
+
+                <span class="ability-tag">감각 강화</span>
+
+                <div class="stat-row">
+                    <span>COMBAT</span>
+                    <strong>A</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>PRECISION</span>
+                    <strong>S</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>TRUST</span>
+                    <strong>UNKNOWN</strong>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="character">
+
+            <div class="char-no">05</div>
+
+            <div class="char-main">
+
+                <div class="char-name">정유진</div>
+
+                <div class="char-role">
+                    MEDIC // AGE 28
+                </div>
+
+                <p class="char-desc">
+                    차분하고 다정하지만 부상당한 요원에게는 누구보다 엄격하다.
+                    치유 능력의 대가는 자신의 몸에 축적된다.
+                </p>
+
+            </div>
+
+            <div class="char-side">
+
+                <span class="ability-tag">생체 치유</span>
+
+                <div class="stat-row">
+                    <span>MEDICAL</span>
+                    <strong>S</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>CONTROL</span>
+                    <strong>A</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>OVERLOAD</span>
+                    <strong>HIGH</strong>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="character">
+
+            <div class="char-no">06</div>
+
+            <div class="char-main">
+
+                <div class="char-name">이현</div>
+
+                <div class="char-role">
+                    INTELLIGENCE OPERATIVE // AGE 30
+                </div>
+
+                <p class="char-desc">
+                    능력 사용 후 남는 흔적을 추적한다.
+                    그런데 당신의 능력에서는 지금까지 존재하지 않았던
+                    이상한 흔적이 발견된다.
+                </p>
+
+            </div>
+
+            <div class="char-side">
+
+                <span class="ability-tag">능력 흔적 추적</span>
+
+                <div class="stat-row">
+                    <span>ANALYSIS</span>
+                    <strong>S</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>COMBAT</span>
+                    <strong>C</strong>
+                </div>
+
+                <div class="stat-row">
+                    <span>TRACE</span>
+                    <strong>UNIQUE</strong>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TEAM LEADER
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+            <div class="section-index">03 // PERSONNEL FILE</div>
+            <h2>TEAM LEADER</h2>
+        </div>
+
+    </div>
+
+
+    <div class="leader">
+
+        <div class="leader-image">
+
+            <img src="assets/teamleader.webp" alt="강태현">
+
+            <div class="image-code">
+                IMAGE RECORD // KTH-032<br>
+                STATUS : ACTIVE
+            </div>
+
+        </div>
+
+
+        <div class="leader-info">
+
+            <div class="classified">
+                CLASSIFIED PERSONNEL FILE
+            </div>
+
+            <h3>강태현</h3>
+
+            <div class="role">
+                TEAM LEADER / SPECIAL OPERATIONS
+            </div>
+
+            <div class="profile-line"></div>
+
+            <dl class="profile-data">
+
+                <dt>AGE</dt>
+                <dd>32</dd>
+
+                <dt>ABILITY</dt>
+                <dd>신체 강화</dd>
+
+                <dt>POSITION</dt>
+                <dd>현장 지휘관</dd>
+
+                <dt>RANK</dt>
+                <dd>A</dd>
+
+                <dt>PERSONALITY</dt>
+                <dd>냉정 / 원칙주의 / 책임감</dd>
+
+                <dt>STATUS</dt>
+                <dd>ACTIVE</dd>
+
+            </dl>
+
+
+            <div class="overload">
+
+                <span>ABILITY OVERLOAD PROTOCOL</span>
+
+                <p>
+                    능력의 과도한 사용은 신체에 부담을 축적시킨다.
+                    특수작전부에서는 모든 능력 사용을 기록하며,
+                    오버로드 한계를 넘은 요원은 즉시 현장에서 이탈시킨다.
+                </p>
 
             </div>
 
@@ -1251,24 +1635,296 @@ footer {
 
 
 <!-- =========================
-     FOOTER
+     MISSIONS
 ========================= -->
+
+<section class="section" id="missions">
+
+    <div class="section-head">
+
+        <div>
+            <div class="section-index">04 // OPERATION ARCHIVE</div>
+            <h2>작전 기록</h2>
+        </div>
+
+        <div class="section-desc">
+            RECENT INCIDENT LOG<br>
+            ACCESS LEVEL : OPERATIVE
+        </div>
+
+    </div>
+
+
+    <div class="mission-list">
+
+        <article class="mission">
+
+            <span class="mission-code">EVENT 01</span>
+            <span class="mission-status">ARCHIVED</span>
+
+            <h3>신규 요원 배치</h3>
+
+            <p>
+                특수작전부에 새로운 요원이 배치되었다.
+                능력과 과거 기록은 일부 비공개 처리되어 있다.
+            </p>
+
+        </article>
+
+
+        <article class="mission">
+
+            <span class="mission-code">EVENT 02</span>
+            <span class="mission-status">ACTIVE</span>
+
+            <h3>능력자 테러 사건</h3>
+
+            <p>
+                도심에서 능력자에 의한 테러가 발생했다.
+                현장에는 일반적인 능력 사용으로는 설명할 수 없는 흔적이 남아 있었다.
+            </p>
+
+        </article>
+
+
+        <article class="mission">
+
+            <span class="mission-code">EVENT 03</span>
+            <span class="mission-status">RESTRICTED</span>
+
+            <h3>검은 조직</h3>
+
+            <p>
+                능력자 범죄 조직의 존재가 확인되었다.
+                조직의 수장은 '블랙'이라는 이름으로만 알려져 있다.
+            </p>
+
+        </article>
+
+
+        <article class="mission">
+
+            <span class="mission-code">EVENT 04</span>
+            <span class="mission-status warning">UNKNOWN</span>
+
+            <h3>이상 능력 흔적</h3>
+
+            <p>
+                정보부가 새로운 종류의 능력 흔적을 발견했다.
+                분석 결과는 아직 공개되지 않았다.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ACCESS
+========================= -->
+
+<section class="access-section" id="access">
+
+    <div class="access-small">
+        SPECIAL OPERATIONS // AUTHORIZED PERSONNEL ONLY
+    </div>
+
+    <h2>작전은 지금부터다.</h2>
+
+    <p>
+        당신의 능력을 선택하십시오.
+        그리고 특수작전부의 다음 기록을 만들어내십시오.
+    </p>
+
+    <button class="btn primary" onclick="openChat()">
+        ACCESS OPERATION
+    </button>
+
+</section>
+
+</main>
+
 
 <footer>
 
-    <div class="footer-inner">
+    <span>SPECIAL OPERATIONS DIVISION // INTERNAL USE ONLY</span>
 
-        <div>
-            SPECIAL OPERATIONS DIVISION
+    <span>ABILITY RESPONSE SYSTEM v.2.04</span>
+
+</footer>
+
+
+<!-- =========================
+     CHAT
+========================= -->
+
+<div class="chat-overlay" id="chatOverlay">
+
+    <div class="chat-window">
+
+        <div class="chat-head">
+
+            <span>
+                SOD://OPERATION_TERMINAL
+            </span>
+
+            <span class="close" onclick="closeChat()">
+                [ CLOSE ]
+            </span>
+
         </div>
 
-        <div>
-            © 2026 SPECIAL OPS
+
+        <div class="chat-body" id="chatBody">
+
+            <div class="message">
+
+                <div class="speaker">
+                    SYSTEM
+                </div>
+
+                <div class="bubble">
+                    신규 요원 인증을 시작합니다.
+                    특수작전부 작전 터미널에 접속했습니다.
+                </div>
+
+            </div>
+
+
+            <div class="message">
+
+                <div class="speaker">
+                    강태현 // TEAM LEADER
+                </div>
+
+                <div class="bubble">
+                    네가 새로 들어온 요원인가.
+                    능력부터 말해.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="chat-input">
+
+            <input
+                id="chatInput"
+                type="text"
+                placeholder="메시지를 입력하십시오..."
+                onkeydown="if(event.key==='Enter')sendMessage()"
+            >
+
+            <button onclick="sendMessage()">
+                SEND
+            </button>
+
         </div>
 
     </div>
 
-</footer>
+</div>
+
+
+<script>
+
+/* =========================
+   CHAT
+========================= */
+
+function openChat(){
+
+    document.getElementById("chatOverlay").style.display = "flex";
+
+}
+
+function closeChat(){
+
+    document.getElementById("chatOverlay").style.display = "none";
+
+}
+
+
+function sendMessage(){
+
+    const input = document.getElementById("chatInput");
+    const body = document.getElementById("chatBody");
+
+    const text = input.value.trim();
+
+    if(!text) return;
+
+
+    const userMessage = document.createElement("div");
+
+    userMessage.className = "message user";
+
+    userMessage.innerHTML = `
+        <div class="speaker">NEW OPERATIVE</div>
+        <div class="bubble">${escapeHTML(text)}</div>
+    `;
+
+    body.appendChild(userMessage);
+
+    input.value = "";
+
+    body.scrollTop = body.scrollHeight;
+
+
+    setTimeout(()=>{
+
+        const reply = document.createElement("div");
+
+        reply.className = "message";
+
+        reply.innerHTML = `
+            <div class="speaker">강태현 // TEAM LEADER</div>
+            <div class="bubble">
+                확인했다.<br>
+                아직 네 능력을 제대로 파악하지 못했겠지.
+                임무에 들어가기 전에 반드시 네 능력의 한계를 알아둬.
+                <br><br>
+                <span style="color:#c84d4d">
+                능력에는 반드시 대가가 따른다.
+                </span>
+            </div>
+        `;
+
+        body.appendChild(reply);
+
+        body.scrollTop = body.scrollHeight;
+
+    },700);
+
+}
+
+
+function escapeHTML(text){
+
+    return text
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* ESC로 닫기 */
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "Escape"){
+        closeChat();
+    }
+
+});
+
+</script>
 
 </body>
 </html>
