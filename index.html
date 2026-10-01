@@ -241,13 +241,61 @@ body.booting #app{visibility:hidden;height:100vh;overflow:hidden}
 
 
 /* ===== SINGLE DATABASE SCREEN MODE ===== */
+.world-record{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:18px}
+.world-record .panel{min-height:100%}
+.world-section-title{font:10px/1.4 "IBM Plex Mono",monospace;letter-spacing:.2em;color:#6f9db0;margin-bottom:11px}
+.world-section-title span{color:#ef4651}
+.world-intro{font-size:16px;line-height:1.9;color:#ccd7df}
+.world-intro strong{color:#fff;font-weight:600}
+.world-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:18px;border:1px solid #263548;background:#091019}
+.world-timeline .time{position:relative;padding:17px 15px 18px;border-right:1px solid #223244}
+.world-timeline .time:last-child{border-right:0}
+.world-timeline .time b{display:block;color:#ef4651;font:12px "IBM Plex Mono",monospace;letter-spacing:.08em;margin-bottom:8px}
+.world-timeline .time strong{display:block;font-size:14px;margin-bottom:7px}
+.world-timeline .time p{margin:0;color:#8e9baa;font-size:12px;line-height:1.65}
+.world-list{display:grid;gap:10px;margin-top:14px}
+.world-list .row{display:grid;grid-template-columns:122px 1fr;gap:15px;padding:13px 0;border-top:1px solid #202f3f}
+.world-list .row:first-child{border-top:0;padding-top:0}
+.world-list .label{font:10px "IBM Plex Mono",monospace;letter-spacing:.14em;color:#ef4651}
+.world-list p{margin:0;color:#9daabd;font-size:13px;line-height:1.7}
+.ability-class{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.ability-class .class-card{background:#0b1119;border:1px solid #243444;border-radius:10px;padding:15px}
+.ability-class .class-card b{display:block;font:11px "IBM Plex Mono",monospace;color:#dce9ef;letter-spacing:.1em;margin-bottom:7px}
+.ability-class .class-card span{display:block;color:#8293a2;font-size:11px;line-height:1.6}
+.overload-box{position:relative;margin-top:18px;padding:18px 20px 19px;border:1px solid rgba(217,48,61,.42);background:linear-gradient(115deg,rgba(94,17,25,.2),rgba(9,15,23,.92))}
+.overload-box:before{content:"WARNING";position:absolute;top:-10px;left:16px;padding:3px 8px;background:#090f16;color:#ef4651;font:9px "IBM Plex Mono",monospace;letter-spacing:.18em}
+.overload-box h3{margin:0 0 8px;font-size:19px}
+.overload-box p{margin:0;color:#a5aeb9;font-size:13px;line-height:1.75}
+.world-secret{margin-top:18px;border:1px dashed #4e3036;background:#090e14;padding:18px 20px}
+.world-secret .lock{color:#ef4651;font:10px "IBM Plex Mono",monospace;letter-spacing:.16em}
+.world-secret h3{margin:9px 0 8px;font-size:18px}
+.world-secret p{margin:0;color:#7f8b98;font-size:12px;line-height:1.7}
+@media(max-width:1000px){.world-record{grid-template-columns:1fr}.world-timeline{grid-template-columns:repeat(2,1fr)}.world-timeline .time:nth-child(2n){border-right:0}.world-timeline .time{border-bottom:1px solid #223244}.world-timeline .time:nth-last-child(-n+1){border-bottom:0}}
+@media(max-width:600px){.world-timeline{grid-template-columns:1fr}.world-timeline .time{border-right:0;border-bottom:1px solid #223244}.world-timeline .time:last-child{border-bottom:0}.ability-class{grid-template-columns:1fr}.world-list .row{grid-template-columns:1fr;gap:6px}}
 body.database-mode #app{min-height:100vh}
 body.database-mode main{min-height:calc(100vh - 70px)}
 body.database-mode main>.hero,body.database-mode main>.section{display:none!important}
 body.database-mode .top{position:fixed;left:0;right:0;top:0}
-body.database-mode .database-screen{display:block;min-height:100vh;padding:120px 7vw 80px;max-width:1500px;margin:auto}
+body.database-mode .database-screen{display:block;position:relative;min-height:100vh;padding:120px 7vw 80px;max-width:1500px;margin:auto}
 .database-screen{display:none}
 .database-screen .screen-kicker{color:#6f9db0;font:10px/1.6 "IBM Plex Mono",monospace;letter-spacing:.22em}
+/* ===== INTERNAL DATABASE RIGHT RAIL ===== */
+.database-side{position:absolute;top:118px;right:7vw;width:360px;border-left:1px solid #24303b;padding-left:42px;z-index:5}
+.database-side .side-kicker{display:block;margin:0 0 24px;color:#70818f;font:10px/1.5 "IBM Plex Mono",monospace;letter-spacing:.19em}
+.database-side .side-list{border-top:1px solid rgba(90,111,126,.18)}
+.database-side .side-item{width:100%;min-height:76px;display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:10px;padding:0 14px;border:0;border-bottom:1px solid rgba(90,111,126,.18);background:transparent;color:#8d9aa5;text-align:left;cursor:pointer;transition:.18s ease;font-family:"Noto Sans KR",sans-serif}
+.database-side .side-item:hover{background:rgba(255,255,255,.025);color:#dce8ee}
+.database-side .side-item.active{background:rgba(255,255,255,.055);color:#e3edf1}
+.database-side .side-num{font:11px "IBM Plex Mono",monospace;color:#566673;letter-spacing:.08em}
+.database-side .side-main{font-size:15px;line-height:1.35}
+.database-side .side-en{display:block;margin-top:5px;color:#60717e;font:9px "IBM Plex Mono",monospace;letter-spacing:.12em}
+.database-side .side-code{font:8px "IBM Plex Mono",monospace;color:#53636f;letter-spacing:.1em;justify-self:end}
+.database-side .side-item.active .side-num,.database-side .side-item.active .side-main{color:#e7f0f4}
+.database-side .side-item.active .side-code{color:#728591}
+.database-side .side-bottom{margin-top:20px;color:#4e606d;font:8px "IBM Plex Mono",monospace;letter-spacing:.12em;line-height:1.6}
+.database-screen > :not(.database-side){max-width:calc(100% - 420px)}
+@media(max-width:1200px){.database-side{right:5vw;width:320px;padding-left:28px}.database-screen{padding-left:5vw!important;padding-right:5vw!important}.database-screen > :not(.database-side){max-width:calc(100% - 365px)}}
+@media(max-width:900px){.database-side{position:relative;top:auto;right:auto;width:auto;margin-top:42px;padding:24px 0 0;border-left:0;border-top:1px solid #24303b}.database-screen > :not(.database-side){max-width:none}.database-side .side-item{min-height:64px}.database-screen{padding-bottom:60px!important}}
 .database-screen h1{font-size:clamp(42px,6vw,78px);margin:10px 0 10px}
 .database-screen .screen-line{height:1px;background:#243444;margin:25px 0 34px}
 .database-screen .back-hub{margin-bottom:24px}
@@ -283,8 +331,9 @@ body.database-mode .database-screen{display:block;min-height:100vh;padding:120px
 .hub-layout{position:relative;z-index:2;display:grid;grid-template-columns:minmax(360px,.95fr) minmax(520px,1.25fr);height:100%;padding:88px 8vw 70px;gap:8vw;align-items:center}
 .hub-left{min-width:0;display:flex;flex-direction:column;align-items:flex-start}.hub-brandline{font-size:10px;letter-spacing:.22em;color:#6c97aa;margin-bottom:22px}.hub-brandline:before{content:"[ ";color:#92afbb}.hub-brandline:after{content:" ]";color:#92afbb}
 .hub-emblem{width:190px;height:190px;margin:0 0 18px;filter:drop-shadow(0 0 18px rgba(188,225,239,.16))}.hub-emblem svg{width:100%;height:100%}.hub-emblem .metal{fill:url(#hubMetal)}.hub-emblem .line{fill:none;stroke:#a9cad8;stroke-width:2;opacity:.82}.hub-emblem .dark{fill:#071017;stroke:#a9cad8;stroke-width:1.4}
-.hub-title{font-family:"Noto Sans KR",sans-serif;font-size:clamp(48px,6vw,86px);font-weight:900;letter-spacing:.05em;color:#dceaf1;text-shadow:0 0 24px rgba(164,215,232,.1);line-height:1}.hub-title-en{margin-top:9px;color:#6e9aad;font-size:11px;letter-spacing:.32em}.hub-rule{width:250px;height:1px;background:linear-gradient(90deg,#6b98aa,transparent);margin:24px 0 18px}.hub-caption{color:#658594;font-size:11px;letter-spacing:.08em;line-height:1.9}.hub-caption b{color:#a5c2cc;font-weight:500}
-.hub-right{position:relative;min-width:0;max-width:760px}.hub-question{font-family:"Noto Sans KR",sans-serif;font-size:clamp(28px,3.2vw,50px);font-weight:800;letter-spacing:-.03em;line-height:1.25;margin:0 0 35px;color:#e1edf2}.hub-question span{color:#df3e4b}.hub-sub{font-size:9px;letter-spacing:.2em;color:#567786;margin-bottom:16px}.hub-menu{border-top:1px solid rgba(78,121,138,.45)}
+.hub-title{font-family:"Noto Sans KR",sans-serif;font-size:clamp(48px,6vw,86px);font-weight:900;letter-spacing:.05em;color:#dceaf1;text-shadow:0 0 24px rgba(164,215,232,.1);line-height:1}.hub-title-en{margin-top:9px;color:#6e9aad;font-size:11px;letter-spacing:.32em}.hub-rule{width:250px;height:1px;background:linear-gradient(90deg,#6b98aa,transparent);margin:24px 0 18px}.hub-caption{color:#658594;font-size:11px;letter-spacing:.08em;line-height:1.9}.hub-caption .access-line{display:inline-block;margin-top:5px}.hub-caption b{color:#a5c2cc;font-weight:500}
+.hub-right{position:relative;min-width:0;max-width:760px}.hub-system-copy{font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:28px;max-width:760px}
+.hub-question{font-family:"Noto Sans KR",sans-serif;font-size:clamp(28px,3.2vw,50px);font-weight:800;letter-spacing:-.03em;line-height:1.25;margin:0 0 35px;color:#e1edf2}.hub-question span{color:#df3e4b}.hub-sub{font-size:9px;letter-spacing:.2em;color:#567786;margin-bottom:16px}.hub-menu{border-top:1px solid rgba(78,121,138,.45)}
 .hub-item{width:100%;display:grid;grid-template-columns:62px 1fr auto;gap:18px;align-items:center;padding:22px 14px 22px 0;border:0;border-bottom:1px solid rgba(78,121,138,.32);background:transparent;color:#a7c1ca;text-align:left;position:relative;transition:.2s}.hub-item:before{content:"";position:absolute;left:-18px;top:14px;bottom:14px;width:2px;background:#dc3e4a;transform:scaleY(0);transform-origin:center;transition:.2s}.hub-item:hover,.hub-item:focus-visible{color:#eef6f8;background:linear-gradient(90deg,rgba(39,82,99,.22),transparent);padding-left:14px;outline:none}.hub-item:hover:before,.hub-item:focus-visible:before{transform:scaleY(1)}.hub-num{color:#5e8291;font-size:10px;letter-spacing:.15em}.hub-main{font-family:"Noto Sans KR",sans-serif;font-size:19px;font-weight:700}.hub-en{display:block;margin-top:5px;font-family:"IBM Plex Mono",monospace;font-size:8px;letter-spacing:.18em;color:#5e7c89}.hub-arrow{color:#6c94a3;font-size:17px}.hub-footer{position:absolute;left:8vw;bottom:28px;z-index:2;color:#4d7182;font-size:8px;letter-spacing:.17em}.hub-footer span{color:#7fa7b7}
 @keyframes hubIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}@keyframes hubScan{from{top:-5%}to{top:105%}}
 @media(max-width:900px){.hub-layout{grid-template-columns:1fr;gap:30px;padding:80px 8vw}.hub-left{align-items:flex-start}.hub-emblem{width:130px;height:130px;margin-bottom:12px}.hub-right{max-width:none}.hub-question{margin-bottom:20px}.hub-item{padding:17px 10px 17px 0}.hub-main{font-size:16px}.hub-footer{display:none}}
@@ -486,11 +535,12 @@ footer{padding:34px max(28px,calc((100vw - 1360px)/2));color:#4f6e7d!important;b
       <div class="hub-title">특수작전부</div>
       <div class="hub-title-en">SPECIAL OPERATIONS DIVISION</div>
       <div class="hub-rule"></div>
-      <div class="hub-caption">SECURITY CLEARANCE <b>LEVEL 01</b><br>AUTHORIZED ACCESS · <b>GRANTED</b></div>
+      <div class="hub-caption">SECURITY CLEARANCE <b>LEVEL 01</b><br><span class="access-line">AUTHORIZED ACCESS · <b>GRANTED</b></span></div>
     </section>
     <section class="hub-right">
-      <h1 class="hub-question">특수작전부에서<br>필요한 <span>정보</span>가 무엇입니까?</h1>
-      <div class="hub-sub">SELECT DATABASE / 접근할 정보를 선택하십시오</div>
+      <div class="hub-system-copy">본 시스템은 특수작전부 내부 자료에 접근하기 위한 제한 구역입니다.</div>
+      <h1 class="hub-question">특수작전부에서<br>열람할 정보를 선택하십시오.</h1>
+      <div class="hub-sub">SELECT DATABASE / ACCESS RESTRICTED</div>
       <nav class="hub-menu">
         <button class="hub-item" data-target="home"><span class="hub-num">01</span><span class="hub-main">특수작전부 소개<span class="hub-en">DIVISION OVERVIEW</span></span><span class="hub-arrow">›</span></button>
         <button class="hub-item" data-target="world"><span class="hub-num">02</span><span class="hub-main">세계관<span class="hub-en">WORLD DATABASE</span></span><span class="hub-arrow">›</span></button>
@@ -505,16 +555,124 @@ footer{padding:34px max(28px,calc((100vw - 1360px)/2));color:#4f6e7d!important;b
 
 <div id="app">
 <header class="top"><div class="brand">SPECIAL <span>OPERATIONS</span></div><nav class="nav"><a href="#home">HOME</a><a href="#world">WORLD</a><a href="#characters">CHARACTERS</a><a href="#mission">MISSION</a></nav><button id="editBtn">EDIT</button></header>
-<main><div class="database-screen" id="databaseHome"><button class="ghost back-hub" data-back-hub>← 정보 목록으로</button><div class="screen-kicker">01 / DIVISION OVERVIEW</div><h1>특수작전부</h1><div class="screen-line"></div><div class="panel"><p class="lead">일반 군·경으로 대응할 수 없는 능력자 사건을 처리하는 국가 특수부대. 테러·인질 구출·능력자 범죄 등 고위험 사건을 비공개로 처리하며, 7팀은 현장 투입을 담당한다.</p><div class="stats"><div class="stat"><b>01</b><small>능력자 대응 전담</small></div><div class="stat"><b>07</b><small>특수작전 7팀</small></div><div class="stat"><b>A</b><small>신입 초기 등급</small></div></div></div></div>
-<div class="database-screen" id="databaseWorld"><button class="ghost back-hub" data-back-hub>← 정보 목록으로</button><div class="screen-kicker">02 / WORLD DATABASE</div><h1>세계관</h1><div class="screen-line"></div><div class="screen-grid"><div class="panel"><p class="lead">20년 전부터 일부 인간에게 특수능력이 발현되었다. 강력한 능력자 범죄가 늘어나면서 국가는 능력자 전담 조직을 만들었고, 그중에서도 특수작전부는 테러·인질 구출·능력자 범죄 등 고위험 사건을 비공개로 처리한다.</p></div><div class="panel"><div class="role">ABILITY USERS</div><h3>능력자의 존재</h3><p class="desc">능력은 개인마다 발현 형태와 강도가 다르며, 과도한 사용은 오버로드를 일으킬 수 있다. 특수작전부는 능력 자체보다 사건의 위험도와 민간인 피해 가능성을 기준으로 투입된다.</p></div></div></div>
-<div class="database-screen" id="databaseCharacters"><button class="ghost back-hub" data-back-hub>← 정보 목록으로</button><div class="screen-kicker">03 / OPERATIVE DATABASE</div><h1>요원 목록</h1><div class="screen-line"></div><div class="grid" id="databaseChars"></div></div>
-<div class="database-screen" id="databaseMission"><button class="ghost back-hub" data-back-hub>← 정보 목록으로</button><div class="screen-kicker">04 / PRIMARY MISSIONS</div><h1>주요 임무</h1><div class="screen-line"></div><div class="mission-list"><article class="mission-card"><div class="num">MISSION 01</div><h3>민간 시설 점거</h3><p>능력자 범죄조직이 민간 시설을 점거했다. 인질이 발생했으며, 7팀에 현장 투입 명령이 떨어진다.</p><button class="primary" data-start-operation>현장 투입</button></article><article class="mission-card"><div class="num">MISSION 02</div><h3>능력자 범죄 추적</h3><p>도시 곳곳에서 동일한 능력 흔적이 발견된다. 정보요원 이현이 현장을 분석하고 7팀이 추적 작전에 합류한다.</p></article><article class="mission-card"><div class="num">MISSION 03</div><h3>인질 구출 작전</h3><p>능력자에 의해 고립된 시설 내부로 진입해 민간인을 확보하고, 오버로드 위험이 있는 적 능력자를 제압한다.</p></article><article class="mission-card"><div class="num">MISSION 04</div><h3>블랙 조직 관련 작전</h3><p>정체불명의 능력자 범죄조직 ‘블랙’과 관련된 흔적이 포착된다. 사건 배후와 조직의 목적은 아직 비공개다.</p></article></div></div>
+<main><div class="database-screen" id="databaseHome"><aside class="database-side" aria-label="내부 데이터베이스 메뉴">
+  <span class="side-kicker">ACCESS DATABASE / SELECT FILE</span>
+  <div class="side-list">
+    <button class="side-item active" data-side="home"><span class="side-num">01</span><span class="side-main">특수작전부<span class="side-en">DIVISION</span></span><span class="side-code">01</span></button>
+    <button class="side-item " data-side="world"><span class="side-num">02</span><span class="side-main">세계관<span class="side-en">WORLD</span></span><span class="side-code">02</span></button>
+    <button class="side-item " data-side="characters"><span class="side-num">03</span><span class="side-main">요원 목록<span class="side-en">OPERATIVES</span></span><span class="side-code">03</span></button>
+    <button class="side-item " data-side="mission"><span class="side-num">04</span><span class="side-main">작전 기록<span class="side-en">MISSIONS</span></span><span class="side-code">04</span></button>
+    <button class="side-item" data-side="case"><span class="side-num">05</span><span class="side-main">사건 기록<span class="side-en">CASE FILES</span></span><span class="side-code">05</span></button>
+    <button class="side-item" data-side="start"><span class="side-num">06</span><span class="side-main">작전 시작<span class="side-en">BEGIN</span></span><span class="side-code">06</span></button>
+  </div>
+  <div class="side-bottom">SPECIAL OPERATIONS DIVISION / INTERNAL USE ONLY</div>
+</aside>
+<button class="ghost back-hub" data-back-hub>← 정보 목록으로</button><div class="screen-kicker">01 / DIVISION OVERVIEW</div><h1>특수작전부</h1><div class="screen-line"></div><div class="panel"><p class="lead">일반 군·경으로 대응할 수 없는 능력자 사건을 처리하는 국가 특수부대. 테러·인질 구출·능력자 범죄 등 고위험 사건을 비공개로 처리하며, 7팀은 현장 투입을 담당한다.</p><div class="stats"><div class="stat"><b>01</b><small>능력자 대응 전담</small></div><div class="stat"><b>07</b><small>특수작전 7팀</small></div><div class="stat"><b>A</b><small>신입 초기 등급</small></div></div></div></div>
+<div class="database-screen" id="databaseWorld"><aside class="database-side" aria-label="내부 데이터베이스 메뉴">
+  <span class="side-kicker">ACCESS DATABASE / SELECT FILE</span>
+  <div class="side-list">
+    <button class="side-item " data-side="home"><span class="side-num">01</span><span class="side-main">특수작전부<span class="side-en">DIVISION</span></span><span class="side-code">01</span></button>
+    <button class="side-item active" data-side="world"><span class="side-num">02</span><span class="side-main">세계관<span class="side-en">WORLD</span></span><span class="side-code">02</span></button>
+    <button class="side-item " data-side="characters"><span class="side-num">03</span><span class="side-main">요원 목록<span class="side-en">OPERATIVES</span></span><span class="side-code">03</span></button>
+    <button class="side-item " data-side="mission"><span class="side-num">04</span><span class="side-main">작전 기록<span class="side-en">MISSIONS</span></span><span class="side-code">04</span></button>
+    <button class="side-item" data-side="case"><span class="side-num">05</span><span class="side-main">사건 기록<span class="side-en">CASE FILES</span></span><span class="side-code">05</span></button>
+    <button class="side-item" data-side="start"><span class="side-num">06</span><span class="side-main">작전 시작<span class="side-en">BEGIN</span></span><span class="side-code">06</span></button>
+  </div>
+  <div class="side-bottom">SPECIAL OPERATIONS DIVISION / INTERNAL USE ONLY</div>
+</aside>
+<button class="ghost back-hub" data-back-hub>← 정보 목록으로</button><div class="screen-kicker">02 / WORLD DATABASE</div><h1>세계관</h1><div class="screen-line"></div>
+  <div class="world-record">
+    <div>
+      <div class="panel">
+        <div class="world-section-title">WORLD RECORD <span>// VERIFIED HISTORY</span></div>
+        <p class="world-intro"><strong>약 20년 전, 평범한 인간의 몸에서 설명할 수 없는 능력이 나타나기 시작했다.</strong> 처음에는 개인의 이상 증상으로 취급됐지만, 짧은 시간 안에 전 세계에서 유사한 사례가 확인되면서 상황이 바뀌었다. 불과 몇 년 사이에 능력은 범죄, 테러, 구조 활동, 산업 기술까지 영향을 미치는 새로운 변수로 자리 잡았다.</p>
+        <p class="world-intro" style="margin-top:12px">현재 능력자는 전체 인구의 약 1%로 추정된다. 대다수는 일상생활을 유지하는 민간인이지만, 능력의 강도가 높은 일부는 기존의 경찰·군 체계만으로는 대응하기 어려운 사건을 일으킨다. 이때부터 국가들은 <strong>능력자 전담 법체계와 특수 대응 조직</strong>을 만들기 시작했다.</p>
+      </div>
+      <div class="world-timeline">
+        <div class="time"><b>20년 전</b><strong>최초 발현기</strong><p>원인을 알 수 없는 능력 발현 사례가 세계 각지에서 보고된다.</p></div>
+        <div class="time"><b>17년 전</b><strong>사회 혼란기</strong><p>능력 범죄와 능력자 대상 범죄가 동시에 증가한다.</p></div>
+        <div class="time"><b>14년 전</b><strong>제도화</strong><p>정부가 능력자 사건 전담 법규와 대응 체계를 정비한다.</p></div>
+        <div class="time"><b>10년 전</b><strong>특수작전부 창설</strong><p>일반 군·경이 처리할 수 없는 고위험 사건을 전담하게 된다.</p></div>
+        <div class="time"><b>현재</b><strong>블랙의 등장</strong><p>능력자 범죄 사건에서 동일한 조직의 개입 흔적이 반복된다.</p></div>
+      </div>
+      <div class="panel" style="margin-top:18px">
+        <div class="world-section-title">ABILITY SOCIETY</div>
+        <div class="world-list">
+          <div class="row"><div class="label">PUBLIC / 시민</div><p>능력의 존재 자체는 이미 사회에 알려져 있다. 능력을 숨기고 살아가는 사람도, 능력을 직업에 활용하는 사람도 있다.</p></div>
+          <div class="row"><div class="label">CONTROL / 관리</div><p>고위험 능력자는 사건 대응 기록과 능력 사용 이력이 관리 대상이 된다. 그러나 모든 능력자의 일상을 국가가 통제하는 것은 아니다.</p></div>
+          <div class="row"><div class="label">CONFLICT / 갈등</div><p>능력자를 보호해야 한다는 입장과 위험 능력자를 강하게 통제해야 한다는 입장이 계속 충돌하고 있다.</p></div>
+          <div class="row"><div class="label">CRIME / 범죄</div><p>능력을 이용한 테러·강도·납치뿐 아니라 능력자를 노린 불법 거래와 실험도 존재한다.</p></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="panel">
+        <div class="world-section-title">ABILITY INDEX</div>
+        <div class="role">능력 분류</div>
+        <h3 style="margin:8px 0 4px">하나의 공식 분류만 존재하지 않는다</h3>
+        <p class="desc">특수작전부는 현장 판단을 위해 능력을 기능 중심으로 분류한다. 같은 능력이라도 사용 방식과 숙련도에 따라 위험도는 달라진다.</p>
+        <div class="ability-class">
+          <div class="class-card"><b>ENHANCE / 강화</b><span>신체 능력·반사신경·내구력 등을 증폭한다.</span></div>
+          <div class="class-card"><b>EMIT / 방출</b><span>전기·열·에너지처럼 외부로 힘을 방출한다.</span></div>
+          <div class="class-card"><b>ALTER / 변형</b><span>물질·공간·환경 등 외부 조건에 변화를 준다.</span></div>
+          <div class="class-card"><b>SENSE / 감지</b><span>시각·청각·흔적 등 일반적인 감각을 넘어선 정보를 얻는다.</span></div>
+          <div class="class-card"><b>RECOVER / 회복</b><span>손상된 생체 조직이나 기능을 복원한다.</span></div>
+          <div class="class-card"><b>ANOMALY / 변칙</b><span>기존 분류만으로 설명하기 어려운 특수 현상.</span></div>
+        </div>
+      </div>
+      <div class="overload-box">
+        <h3>오버로드</h3>
+        <p>능력은 무한히 사용할 수 없다. 사용량이 개인의 한계를 넘으면 능력의 정밀도가 무너지고 두통, 이명, 시야 이상, 근육 경련 등의 증상이 발생한다. 심한 경우 의식 상실이나 장기적인 후유증으로 이어질 수 있어, 특수작전부는 모든 작전에 <strong>능력 사용 한계선</strong>을 둔다.</p>
+      </div>
+      <div class="world-secret">
+        <div class="lock">ACCESS RESTRICTED // LEVEL 02</div>
+        <h3>당신의 능력에 관한 미확인 기록</h3>
+        <p>능력 발현 기록과 작전 로그를 대조한 결과, 당신의 능력 사용 뒤에는 기존 데이터베이스에서 발견되지 않은 형태의 흔적이 남는 것으로 확인되었다. 이 정보는 현재 7팀 일부 인원에게만 공유되어 있다.</p>
+      </div>
+      <div class="panel" style="margin-top:18px">
+        <div class="world-section-title">SPECIAL OPERATIONS DIVISION</div>
+        <div class="role">특수작전부의 역할</div>
+        <p class="desc">특수작전부는 ‘능력자를 잡는 부대’가 아니다. 능력으로 인해 민간인 피해가 급격히 커질 가능성이 있는 사건에 투입되어 현장을 통제하고, 필요한 경우 능력자를 제압·구조·확보한 뒤 사건을 국가 기관에 넘긴다.</p>
+        <div class="world-list">
+          <div class="row"><div class="label">RULE 01</div><p>민간인 생존을 최우선으로 한다.</p></div>
+          <div class="row"><div class="label">RULE 02</div><p>능력 사용은 필요한 만큼만, 오버로드 선을 넘지 않는다.</p></div>
+          <div class="row"><div class="label">RULE 03</div><p>현장 정보는 작전 종료 후까지 외부에 공개하지 않는다.</p></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+<div class="database-screen" id="databaseCharacters"><aside class="database-side" aria-label="내부 데이터베이스 메뉴">
+  <span class="side-kicker">ACCESS DATABASE / SELECT FILE</span>
+  <div class="side-list">
+    <button class="side-item " data-side="home"><span class="side-num">01</span><span class="side-main">특수작전부<span class="side-en">DIVISION</span></span><span class="side-code">01</span></button>
+    <button class="side-item " data-side="world"><span class="side-num">02</span><span class="side-main">세계관<span class="side-en">WORLD</span></span><span class="side-code">02</span></button>
+    <button class="side-item active" data-side="characters"><span class="side-num">03</span><span class="side-main">요원 목록<span class="side-en">OPERATIVES</span></span><span class="side-code">03</span></button>
+    <button class="side-item " data-side="mission"><span class="side-num">04</span><span class="side-main">작전 기록<span class="side-en">MISSIONS</span></span><span class="side-code">04</span></button>
+    <button class="side-item" data-side="case"><span class="side-num">05</span><span class="side-main">사건 기록<span class="side-en">CASE FILES</span></span><span class="side-code">05</span></button>
+    <button class="side-item" data-side="start"><span class="side-num">06</span><span class="side-main">작전 시작<span class="side-en">BEGIN</span></span><span class="side-code">06</span></button>
+  </div>
+  <div class="side-bottom">SPECIAL OPERATIONS DIVISION / INTERNAL USE ONLY</div>
+</aside>
+<button class="ghost back-hub" data-back-hub>← 정보 목록으로</button><div class="screen-kicker">03 / OPERATIVE DATABASE</div><h1>요원 목록</h1><div class="screen-line"></div><div class="grid" id="databaseChars"></div></div>
+<div class="database-screen" id="databaseMission"><aside class="database-side" aria-label="내부 데이터베이스 메뉴">
+  <span class="side-kicker">ACCESS DATABASE / SELECT FILE</span>
+  <div class="side-list">
+    <button class="side-item " data-side="home"><span class="side-num">01</span><span class="side-main">특수작전부<span class="side-en">DIVISION</span></span><span class="side-code">01</span></button>
+    <button class="side-item " data-side="world"><span class="side-num">02</span><span class="side-main">세계관<span class="side-en">WORLD</span></span><span class="side-code">02</span></button>
+    <button class="side-item " data-side="characters"><span class="side-num">03</span><span class="side-main">요원 목록<span class="side-en">OPERATIVES</span></span><span class="side-code">03</span></button>
+    <button class="side-item active" data-side="mission"><span class="side-num">04</span><span class="side-main">작전 기록<span class="side-en">MISSIONS</span></span><span class="side-code">04</span></button>
+    <button class="side-item" data-side="case"><span class="side-num">05</span><span class="side-main">사건 기록<span class="side-en">CASE FILES</span></span><span class="side-code">05</span></button>
+    <button class="side-item" data-side="start"><span class="side-num">06</span><span class="side-main">작전 시작<span class="side-en">BEGIN</span></span><span class="side-code">06</span></button>
+  </div>
+  <div class="side-bottom">SPECIAL OPERATIONS DIVISION / INTERNAL USE ONLY</div>
+</aside>
+<button class="ghost back-hub" data-back-hub>← 정보 목록으로</button><div class="screen-kicker">04 / PRIMARY MISSIONS</div><h1>주요 임무</h1><div class="screen-line"></div><div class="mission-list"><article class="mission-card"><div class="num">MISSION 01</div><h3>민간 시설 점거</h3><p>능력자 범죄조직이 민간 시설을 점거했다. 인질이 발생했으며, 7팀에 현장 투입 명령이 떨어진다.</p><button class="primary" data-start-operation>현장 투입</button></article><article class="mission-card"><div class="num">MISSION 02</div><h3>능력자 범죄 추적</h3><p>도시 곳곳에서 동일한 능력 흔적이 발견된다. 정보요원 이현이 현장을 분석하고 7팀이 추적 작전에 합류한다.</p></article><article class="mission-card"><div class="num">MISSION 03</div><h3>인질 구출 작전</h3><p>능력자에 의해 고립된 시설 내부로 진입해 민간인을 확보하고, 오버로드 위험이 있는 적 능력자를 제압한다.</p></article><article class="mission-card"><div class="num">MISSION 04</div><h3>블랙 조직 관련 작전</h3><p>정체불명의 능력자 범죄조직 ‘블랙’과 관련된 흔적이 포착된다. 사건 배후와 조직의 목적은 아직 비공개다.</p></article></div></div>
 
 <section class="hero" id="home"><div><div class="eyebrow" id="eyebrow">SPECIAL OPERATIONS UNIT</div><h1 id="title">특수작전부</h1><p class="lead" id="intro">일반 군·경으로 대응할 수 없는 능력자 사건을 처리하는 국가 특수부대. 당신은 오늘, 이곳의 새로운 대원이 된다.</p><div class="cta"><button class="primary" id="startBtn">작전 시작</button><button class="ghost" id="worldBtn">세계관 보기</button></div></div><div class="hero-art hero-emblem-art"><div class="hero-emblem-wrap" aria-label="특수작전부 엠블럼">
 <svg viewBox="0 0 240 240" class="hero-emblem-svg"><defs><linearGradient id="heroMetal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2fbff"/><stop offset=".35" stop-color="#a8c5d1"/><stop offset=".58" stop-color="#e4f2f7"/><stop offset="1" stop-color="#6f909e"/></linearGradient></defs>
 <circle cx="120" cy="120" r="86" class="line" opacity=".45"/><path d="M120 18 L133 39 L128 42 L128 104 L120 120 L112 104 L112 42 L107 39 Z" class="metal"/><path d="M120 53 L120 190 L112 207 L112 122 L120 107 L128 122 L128 207 L120 190 Z" class="metal"/><path d="M111 73 L82 62 L49 83 L72 89 L52 105 L88 102 L106 91 Z" class="metal"/><path d="M129 73 L158 62 L191 83 L168 89 L188 105 L152 102 L134 91 Z" class="metal"/><path d="M96 103 L77 108 L91 119 L67 127 L104 129 L120 113 Z" class="dark"/><path d="M144 103 L163 108 L149 119 L173 127 L136 129 L120 113 Z" class="dark"/><path d="M84 133 L104 126 L120 142 L136 126 L156 133 L145 149 L120 161 L95 149 Z" class="metal"/><path d="M88 154 L105 168 L120 179 L135 168 L152 154 L142 183 L120 201 L98 183 Z" class="dark"/><path d="M70 67 L59 57 M170 67 L181 57" class="line"/><circle cx="120" cy="120" r="91" class="line" opacity=".2"/><path d="M43 120 A77 77 0 0 1 197 120" class="line"/><path d="M52 151 A70 70 0 0 0 188 151" class="line" opacity=".35"/></svg>
 <div class="hero-emblem-label">SPECIAL OPERATIONS DIVISION</div><div class="hero-emblem-status">SOD-7 // AUTHORIZED</div></div></div></section>
-<section class="section" id="world"><div class="section-head"><div><h2>세계관</h2><div class="sub">당신이 들어갈 세계</div></div></div><div class="world"><div class="panel"><div id="worldText">20년 전부터 일부 인간에게 특수능력이 발현되었다. 강력한 능력자 범죄가 늘어나면서 국가는 능력자 전담 조직을 만들었고, 그중에서도 특수작전부는 테러·인질 구출·능력자 범죄 등 고위험 사건을 비공개로 처리한다.</div><div class="stats"><div class="stat"><b>1%</b><small>능력자 비율</small></div><div class="stat"><b>7</b><small>특수작전 팀</small></div><div class="stat"><b>A</b><small>당신의 초기 등급</small></div></div></div><div class="panel" id="mission"><div class="role">MISSION</div><h3>첫 번째 임무</h3><p class="desc">능력자 범죄조직이 민간 시설을 점거했다. 7팀에 출동 명령이 떨어진다.</p><button class="primary" id="startBtn2">현장 투입</button></div></div></section>
+<section class="section" id="world"><div class="section-head"><div><h2>세계관</h2><div class="sub">당신이 들어갈 세계</div></div></div><div class="world"><div class="panel"><div id="worldText">약 20년 전, 일부 인간에게 특수능력이 발현되기 시작했다. 현재 능력자는 전체 인구의 약 1%로 추정되며, 대부분은 민간인으로 살아가지만 일부 고위험 능력은 기존 군·경 체계만으로 대응하기 어려운 사건을 만든다. 각국은 능력자 전담 체계와 대응 조직을 정비했고, 그 과정에서 특수작전부가 창설되었다. 능력자를 단순히 체포하는 것이 아니라 테러·인질 구출·능력자 범죄 현장을 통제하고 민간인 피해를 최소화하는 것이 이들의 임무다.</div><div class="stats"><div class="stat"><b>20Y</b><small>능력 발현 이후</small></div><div class="stat"><b>1%</b><small>능력자 추정 비율</small></div><div class="stat"><b>7</b><small>특수작전 7팀</small></div></div></div><div class="panel" id="mission"><div class="role">MISSION</div><h3>첫 번째 임무</h3><p class="desc">능력자 범죄조직이 민간 시설을 점거했다. 7팀에 출동 명령이 떨어진다.</p><button class="primary" id="startBtn2">현장 투입</button></div></div></section>
 <section class="section" id="characters"><div class="section-head"><div><h2>주요 인물</h2><div class="sub">공략 가능 캐릭터</div></div></div><div class="grid" id="chars"></div></section>
 </main><footer>특수작전부 · Interactive Simulation Prototype · 내용은 EDIT에서 수정 가능</footer></div>
 <div class="modal" id="modal"><div class="editor"><button class="close" id="close">×</button><h2>페이지 편집</h2><p class="sub">수정한 내용은 이 브라우저의 로컬 저장소에 저장됩니다.</p><label>메인 제목</label><input id="eTitle"><label>소개 문구</label><textarea id="eIntro"></textarea><label>세계관</label><textarea id="eWorld"></textarea><label>팀장 이름</label><input id="eLeader"><label>팀장 능력</label><input id="eAbility"><div class="editor-actions"><button class="ghost" id="reset">기본값</button><button class="primary" id="save">저장</button></div></div></div>
@@ -541,7 +699,7 @@ footer{padding:34px max(28px,calc((100vw - 1360px)/2));color:#4f6e7d!important;b
 
 <div class="chat" id="chat"><div class="chathead"><b>특수작전부 · 작전 채널</b><button class="ghost" id="chatClose">나가기</button></div><div class="messages" id="messages"><div class="msg npc"><span class="msg-meta">TEAM LEADER // KANG TAEHYUN</span>강태현 : 신입. 능력이 뭐지?</div><div class="msg npc"><span class="msg-meta">SYSTEM // INITIAL BRIEFING</span>SYSTEM : 현장 투입 전 브리핑 채널입니다. 사용자 응답 권한은 잠겨 있습니다.</div></div><div class="chatbar readonly"><span class="readonly-dot"></span><span>READ ONLY · 실시간 작전 기록 열람 전용</span><span class="readonly-code">NO INPUT / SOD-7</span></div></div>
 <script>
-const defaults={title:'특수작전부',intro:'일반 군·경으로 대응할 수 없는 능력자 사건을 처리하는 국가 특수부대. 당신은 오늘, 이곳의 새로운 대원이 된다.',world:'20년 전부터 일부 인간에게 특수능력이 발현되었다. 강력한 능력자 범죄가 늘어나면서 국가는 능력자 전담 조직을 만들었고, 그중에서도 특수작전부는 테러·인질 구출·능력자 범죄 등 고위험 사건을 비공개로 처리한다.',leader:'강태현',ability:'신체 강화'};
+const defaults={title:'특수작전부',intro:'일반 군·경으로 대응할 수 없는 능력자 사건을 처리하는 국가 특수부대. 당신은 오늘, 이곳의 새로운 대원이 된다.',world:'약 20년 전, 일부 인간에게 특수능력이 발현되기 시작했다. 현재 능력자는 전체 인구의 약 1%로 추정되며, 대부분은 일상을 살아가는 민간인이지만 일부 고위험 능력은 기존 군·경 체계만으로 대응하기 어려운 사건을 만든다. 각국은 능력자 전담 법체계와 대응 조직을 정비했고, 그 과정에서 특수작전부가 창설되었다. 특수작전부는 능력자를 단순히 체포하는 조직이 아니라 테러·인질 구출·능력자 범죄처럼 민간인 피해가 급격히 커질 수 있는 현장을 통제하고, 필요할 경우 능력자를 제압·구조·확보한다. 능력의 무리한 사용은 오버로드를 일으키며, 반복되는 능력 범죄 뒤에서는 정체불명의 조직 ‘블랙’의 흔적이 발견되고 있다.',leader:'강태현',ability:'신체 강화'};
 const chars=[
   {name:'강태현',role:'팀장 · 32세',ability:'신체 강화',desc:'특수작전부 7팀을 지휘하는 팀장. 임무보다 대원의 생존을 우선하며, 감정에 휘둘리지 않는 냉정한 판단으로 팀을 통제한다.',personality:'냉정한 원칙주의자. 쉽게 마음을 열지 않지만 자신의 팀원은 끝까지 책임진다.',route:'상관과 부하 → 신뢰 → 의지 → 금지된 감정',code:'SOD-OPR-01'},
   {name:'서지혁',role:'부팀장 · 29세',ability:'공간 이동',desc:'작전의 동선과 변수를 계산하는 부팀장. 짧은 거리의 공간을 이동하거나 팀원을 지정 위치로 이동시킬 수 있다.',personality:'계산적이고 경계심이 강하다. 특히 당신의 과거와 능력에 의문을 품고 있다.',route:'불신 → 공조 → 공유된 비밀 → 신뢰',code:'SOD-OPR-02'},
@@ -641,6 +799,16 @@ commandHub.querySelectorAll('.hub-item').forEach(btn=>{
   });
 });
 document.querySelectorAll('[data-back-hub]').forEach(btn=>btn.addEventListener('click',showHub));
+const sideMap={home:'home',world:'world',characters:'characters',mission:'mission'};
+document.querySelectorAll('.database-side [data-side]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const key=btn.dataset.side;
+    if(key==='start'){ start(); return; }
+    if(key==='case'){ return; }
+    if(sideMap[key]){ showDatabase(sideMap[key]); }
+  });
+});
+
 document.querySelectorAll('[data-start-operation]').forEach(btn=>btn.addEventListener('click',start));
 </script>
 </body></html>
